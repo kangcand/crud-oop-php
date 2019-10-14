@@ -1,0 +1,7 @@
+CREATE TABLE siswa 
+(
+id int(11) AUTO_INCREMENT PRIMARY KEY,
+nis varchar(191) NOT null,
+nama varchar(191) NOT null,
+alamat text NOT null
+)
