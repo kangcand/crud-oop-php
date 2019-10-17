@@ -40,37 +40,45 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        Data Siswa
-                        <a href="/siswa/create.php" class="btn btn-sm btn-info float-md-right">Tambah</a>
+                        Biodata
+                        <button type="button" class="btn btn-sm btn-info float-md-right" data-toggle="modal" data-target=".biodata">Tambah</b>
                     </div>
+                    <?php include 'create.php'; ?>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table" id="datatable">
                                 <thead>
                                     <th>No</th>
-                                    <th>Nomor Induk Siswa</th>
                                     <th>Nama</th>
                                     <th>Alamat</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Agama</th>
+                                    <th>Tanggal Lahir</th>
+                                    <th>Umur</th>
                                     <th>Aksi</th>
                                 </thead>
                                 <tbody>
                                     <?php
                                     include '../database.php';
-                                    $siswa = new Siswa();
+                                    $biodata = new Biodata();
                                     $no = 1;
-                                    foreach ($siswa->index() as $data) {
+                                    foreach ($biodata->index() as $data) {
                                         ?>
                                         <tr>
                                             <td><?php echo $no++; ?></td>
-                                            <td><?php echo $data['nis']; ?></td>
                                             <td><?php echo $data['nama']; ?></td>
                                             <td><?php echo $data['alamat']; ?></td>
+                                            <td><?php echo $data['jenis_kelamin']; ?></td>
+                                            <td><?php echo $data['agama']; ?></td>
+                                            <td><?php echo $data['tgl_lahir']; ?></td>
+                                            <td><?php echo $data['umur']; ?></td>
                                             <td>
-                                                <a href="show.php?id=<?php echo $data['id']; ?>" class="btn btn-sm btn-warning">Show</a> |
-                                                <a href="edit.php?id=<?php echo $data['id']; ?>" class="btn btn-sm btn-success">Edit</a> |
-                                                <a href="proses.php?id=<?php echo $data['id']; ?>&aksi=delete" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda Yakin ?')">Delete</a>
+                                                <a href="/biodata/show.php?id=<?php echo $data['id']; ?>" class="btn btn-sm btn-warning">Show</a> |
+                                                <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target=".biodata-<?php echo $data['id']; ?>">Edit</button> |
+                                                <a href="/biodata/proses.php?id=<?php echo $data['id']; ?>&aksi=delete" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda Yakin ?')">Delete</a>
                                             </td>
                                         </tr>
+                                        <?php include 'edit.php'; ?>
                                     <?php } ?>
                                 </tbody>
                             </table>

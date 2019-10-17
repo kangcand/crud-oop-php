@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
+    <!-- readonly meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -40,47 +40,52 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        Data Siswa
-                        <a href="/siswa/create.php" class="btn btn-sm btn-info float-md-right">Tambah</a>
+                        Tambah Biodata
                     </div>
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table" id="datatable">
-                                <thead>
-                                    <th>No</th>
-                                    <th>Nomor Induk Siswa</th>
-                                    <th>Nama</th>
-                                    <th>Alamat</th>
-                                    <th>Aksi</th>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    include '../database.php';
-                                    $siswa = new Siswa();
-                                    $no = 1;
-                                    foreach ($siswa->index() as $data) {
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $no++; ?></td>
-                                            <td><?php echo $data['nis']; ?></td>
-                                            <td><?php echo $data['nama']; ?></td>
-                                            <td><?php echo $data['alamat']; ?></td>
-                                            <td>
-                                                <a href="show.php?id=<?php echo $data['id']; ?>" class="btn btn-sm btn-warning">Show</a> |
-                                                <a href="edit.php?id=<?php echo $data['id']; ?>" class="btn btn-sm btn-success">Edit</a> |
-                                                <a href="proses.php?id=<?php echo $data['id']; ?>&aksi=delete" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda Yakin ?')">Delete</a>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
+                        <?php
+                        include '../database.php';
+                        $biodata = new Biodata();
+                        foreach ($biodata->edit($_GET['id']) as $data) {
+                            $id = $data['id'];
+                            $agama = $data['agama'];
+                            $nama = $data['nama'];
+                            $alamat = $data['alamat'];
+                            $jenis_kelamin = $data['jenis_kelamin'];
+                            $tgl_lahir = $data['tgl_lahir'];
+                        }
+                        ?>
+                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+                        <div class="form-group">
+                            <label>Nama</label>
+                            <input type="text" name="nama" value="<?php echo $nama; ?>" class="form-control" readonly>
                         </div>
+                        <div class="form-group">
+                            <label>Alamat</label>
+                            <textarea type="text" name="alamat" class="form-control" readonly><?php echo $alamat ?></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Jenis Kelamin</label>
+                            <input type="text" class="form-control" value="<?php echo $jenis_kelamin ?>" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Agama</label>
+                            <input type="text" class="form-control" value="<?php echo $agama ?>" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Tanggal Lahir</label>
+                            <input type="text" name="tgl_lahir" value="<?php echo $tgl_lahir; ?>" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <a href="/biodata" name="save" class="btn btn-block btn-dark">Kembali</a>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="/assets/js/jquery.min.js"></script>

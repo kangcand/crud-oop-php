@@ -1,65 +1,23 @@
-<?php 
-class Database {
-    // $host = untuk memberitau kita menggunakan server lokal yaitu localhost,
-    // $user = username dari localhost
-    // $pass = password untuk masuk ke localhost mysql kita, kosongkan jika tidak menggunakan password
-    // $db = untuk memberi akses kita menggunakan database mana di server lokal kita (localhost)
-    public $host = "localhost", $user = "root", $pass = 123, $db="example";
+<?php
+class Database
+{
+    public $host = "localhost", $user = "root", $pass = 123, $db = "latihan";
     public $koneksi;
     public function __construct()
     {
-        $this->koneksi = mysqli_connect($this->host, $this->user, $this->pass, $this->db);
-        if($this->koneksi)
-        {
+        $this->koneksi = mysqli_connect($this->host, $this->user,  $this->pass, $this->db);
+        if ($this->koneksi) {
             // echo "berhasil";
         } else {
-            return "Koneksi Database Gagal";
+            echo "Koneksi Database Gagal";
         }
     }
 }
-class Siswa extends Database {
-    // Menampilkan Semua Data
-    public function index()
-    {
-        
-        $datasiswa = mysqli_query($this->koneksi,"select * from siswa");
-        // var_dump($datasiswa);
-        return $datasiswa;
-    }
+// Data Tabel Siswa
+include 'siswa.php';
 
-    // Menambah Data
-    public function create($nis, $nama, $alamat)
-    {
-        
-        mysqli_query($this->koneksi,"insert into siswa values('','$nis','$nama', '$alamat')");
-    }
-    // Menampilkan Data Berdasarkan ID
-    public function show($id)
-    {
-        $datasiswa = mysqli_query($this->koneksi,"select * from siswa where id='$id'");
-        return $datasiswa;
-    }
+// Data Tabel Biodata
+include 'biodata.php';
 
-    // Menampilkan data berdasarkan id
-    public function edit($id)
-    {
-        $datasiswa = mysqli_query($this->koneksi,"select * from siswa where id='$id'");
-        return $datasiswa;
-    }
-
-    // mengupdate data berdasarkan id
-    public function update($id, $nis, $nama, $alamat)
-    {
-        mysqli_query($this->koneksi,"update siswa set nis='$nis',nama='$nama', alamat='$alamat' where id='$id'");
-    }
-
-    // menghapus data berdasarkan id
-    public function delete($id)
-    {
-        mysqli_query($this->koneksi,"delete from siswa where id='$id'");
-    }
-}
 // koneksi DB
 $db = new Database();
-
-?>
