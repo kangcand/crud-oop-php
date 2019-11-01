@@ -1,8 +1,3 @@
-<?php
-include '../database.php';
-$siswa = new Siswa();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +10,8 @@ $siswa = new Siswa();
 
 <body>
     <?php
+    include '../database.php';
+    $siswa = new Siswa();
     foreach ($siswa->edit($_GET['id']) as $data) {
         $id = $data['id'];
         $nis = $data['nis'];
@@ -36,7 +33,7 @@ $siswa = new Siswa();
                     <td><input type="text" name="nama" value="<?php echo $nama; ?>" required></td>
                 </tr>
                 <tr>
-                    <th>Nama Siswa</th>
+                    <th>Alamat</th>
                     <td><textarea name="alamat" cols="40" required><?php echo $alamat; ?></textarea></td>
                 </tr>
                 <tr>
