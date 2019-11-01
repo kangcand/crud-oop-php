@@ -13,7 +13,7 @@ class Database
             $this->db
         );
         if ($this->koneksi) {
-            echo "berhasil";
+            // echo "berhasil";
         } else {
             echo "Koneksi Database Gagal";
         }
@@ -21,6 +21,9 @@ class Database
 }
 // Data Tabel Siswa
 include 'siswa.php';
+
+// data tabel A
+// include ''
 
 // koneksi DB
 $db = new Database();
