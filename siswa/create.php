@@ -11,7 +11,7 @@
 <body>
     <fieldset>
         <legend>Input Data Siswa</legend>
-        <form action="/siswa/proses.php?aksi=tambah" method="post">
+        <form action="proses.php?aksi=tambah" method="get">
             <table>
                 <tr>
                     <th>Nomor Induk Siswa</th>

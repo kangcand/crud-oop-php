@@ -21,7 +21,7 @@
     ?>
     <fieldset>
         <legend>Edit Data Siswa</legend>
-        <form action="/siswa/proses.php?aksi=update" method="post">
+        <form action="proses.php?aksi=update" method="post">
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             <table>
                 <tr>

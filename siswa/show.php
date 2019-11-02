@@ -1,8 +1,3 @@
-<?php
-include '../database.php';
-$siswa = new Siswa();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +10,8 @@ $siswa = new Siswa();
 
 <body>
     <?php
+    include '../database.php';
+    $siswa = new Siswa();
     foreach ($siswa->show($_GET['id']) as $data) {
         $id = $data['id'];
         $nis = $data['nis'];
